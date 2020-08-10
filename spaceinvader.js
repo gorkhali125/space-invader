@@ -3,13 +3,15 @@
 // @license MIT
 // @author Deepesh Khanal
 
-var gameCanvas = document.getElementById("spaceInvader");
-var ctx = gameCanvas.getContext("2d");
-
-let canvasWidth = gameCanvas.width,
+let gameCanvas = document.getElementById("spaceInvader"),
+    ctx = gameCanvas.getContext("2d"),
+    canvasWidth = gameCanvas.width,
     canvasHeight = gameCanvas.height,
     canvasHalfWidth = gameCanvas.width / 2,
-    canvasHalfHeight = gameCanvas.height / 2;
+    canvasHalfHeight = gameCanvas.height / 2,
+    bulletX = canvasHalfWidth,
+    bulletY = canvasHeight - 95,
+    bulletMomentum = 2;
 
 function drawHeroJet() {
     const image = new Image();
@@ -19,22 +21,22 @@ function drawHeroJet() {
     }
 }
 
-function drawJetBullet(){
+function drawJetBullet() {
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight - 80);
     ctx.beginPath();
-    ctx.arc(canvasHalfWidth, canvasHeight - 95, 8, 0, Math.PI*2);
+    ctx.arc(bulletX, bulletY, 8, 0, Math.PI * 2);
     ctx.fillStyle = "#0095DD";
     ctx.fill();
     ctx.closePath();
+    bulletY -= bulletMomentum;
 }
 
-function drawGameAssets(){
-    drawHeroJet();
+function drawGameAssets() {
     drawJetBullet();
 }
 
-drawGameAssets();
-
-// setInterval(drawGameAssets, 10);
+drawHeroJet();
+setInterval(drawGameAssets, 10);
 
 
 
