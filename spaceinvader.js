@@ -20,14 +20,14 @@ let gameCanvas = document.getElementById("spaceInvader"),
 const jetWidth = jetHeight = 64;
 
 function drawHeroJet() {
-    if(moveRight){
+    if (moveRight) {
         jetX += 10;
-        if(jetX + jetWidth > canvasWidth){
+        if (jetX + jetWidth > canvasWidth) {
             jetX = canvasWidth - jetWidth;
         }
-    }else if(moveLeft){
+    } else if (moveLeft) {
         jetX -= 10;
-        if(jetX < 0){
+        if (jetX < 0) {
             jetX = 0;
         }
     }
