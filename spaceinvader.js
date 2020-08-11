@@ -2,6 +2,7 @@
 // @description A simple space invader game using JS
 // @license MIT
 // @author Deepesh Khanal
+
 let gameCanvas = document.getElementById("spaceInvader"),
     ctx = gameCanvas.getContext("2d"),
     canvasWidth = gameCanvas.width,
@@ -10,6 +11,7 @@ let gameCanvas = document.getElementById("spaceInvader"),
     canvasHalfHeight = gameCanvas.height / 2,
     jetX = canvasHalfWidth - 32,
     jetY = canvasHeight - 80,
+    jetMomentum = 4,
     bulletX = canvasHalfWidth,
     bulletY = canvasHeight - 95,
     ballRadius = 8,
@@ -21,15 +23,17 @@ const jetWidth = jetHeight = 64;
 
 function drawHeroJet() {
     if (moveRight) {
-        jetX += 10;
+        jetX += jetMomentum;
         if (jetX + jetWidth > canvasWidth) {
             jetX = canvasWidth - jetWidth;
         }
+        ctx.clearRect(0, jetY, canvasWidth, canvasHeight);
     } else if (moveLeft) {
-        jetX -= 10;
+        jetX -= jetMomentum;
         if (jetX < 0) {
             jetX = 0;
         }
+        ctx.clearRect(0, jetY, canvasWidth, canvasHeight);
     }
 
     const image = new Image();
@@ -40,6 +44,7 @@ function drawHeroJet() {
 }
 
 function drawJetBullet() {
+    ctx.clearRect(0, 0, canvasWidth, jetY);
     ctx.beginPath();
     ctx.arc(bulletX, bulletY, ballRadius, 0, Math.PI * 2);
     ctx.fillStyle = "#0095DD";
@@ -49,7 +54,6 @@ function drawJetBullet() {
 }
 
 function initializeGame() {
-    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     drawHeroJet();
     drawJetBullet();
     attachKeyboardEvents();
