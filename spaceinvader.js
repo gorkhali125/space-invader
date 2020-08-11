@@ -14,6 +14,8 @@ let gameCanvas = document.getElementById("spaceInvader"),
     jetMomentum = 4,
     bulletX = canvasHalfWidth,
     bulletY = canvasHeight - 95,
+    bulletCount = 15,
+    bullets = [],
     ballRadius = 8,
     bulletMomentum = 2,
     moveRight = false,
@@ -45,12 +47,17 @@ function drawHeroJet() {
 
 function drawJetBullet() {
     ctx.clearRect(0, 0, canvasWidth, jetY);
-    ctx.beginPath();
-    ctx.arc(bulletX, bulletY, ballRadius, 0, Math.PI * 2);
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
-    bulletY -= bulletMomentum;
+    for(var i = 0; i < bulletCount; i++){
+        ctx.beginPath();
+        if(typeof bullets[i] == "undefined"){
+            bullets[i] = { 'y' : bulletY};
+        }
+        ctx.arc(bulletX, bullets[i]['y'] - (i*40), ballRadius, 0, Math.PI * 2, true);
+        bullets[i]['y'] -= bulletMomentum;
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        ctx.closePath();        
+    }
 }
 
 function initializeGame() {
