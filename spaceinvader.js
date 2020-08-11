@@ -18,6 +18,7 @@ let gameCanvas = document.getElementById("spaceInvader"),
     bullets = [],
     ballRadius = 8,
     bulletMomentum = 2,
+    alienCount = 10,
     moveRight = false,
     moveLeft = false;
 
@@ -60,9 +61,22 @@ function drawJetBullet() {
     }
 }
 
+function drawAliens(){
+    for(var i = 1; i <= alienCount; i++){
+        ctx.beginPath();
+        ctx.rect(i*43, 20, 30, 30);
+        ctx.rect(i*44, 60, 28, 28);
+        ctx.rect(i*45, 100, 26, 26);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        ctx.stroke();
+    }
+}
+
 function initializeGame() {
     drawHeroJet();
     drawJetBullet();
+    drawAliens();
     attachKeyboardEvents();
 }
 
