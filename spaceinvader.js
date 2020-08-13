@@ -147,9 +147,9 @@
 
     SpaceInvader.prototype.handleKeyPress = function (e) {
 
-        switch (e.keyCode) {
-            // left arrow
-            case (37): {
+        key = e.code || e.key;
+        switch (key) {
+            case ("ArrowLeft"): {
                 if (SI.jetX > 0) {
                     SI.jetX -= SI.jetMoveSteps;
                     SI.bulletInitialX -= SI.jetMoveSteps;
@@ -157,16 +157,15 @@
                 return true;
             }
 
-            // Up arrow || space
-            case (32):
-            case (38): {
+            case ("ArrowUp"):
+            case ("Space"):
+            case (" "): {
                 var bulletKey = 'bullet' + SI.getCount();
                 SI.bulletList[bulletKey] = new SI.FireBullet(SI.bulletInitialX, SI.bulletInitialY, SI.bulletRadius, SI.bulletColor, SI.bulletMoveSteps, bulletKey)
                 return true;
             }
 
-            // right arrow
-            case (39): {
+            case ("ArrowRight"): {
                 if (SI.jetX + SI.jetSize < SI.width) {
                     SI.jetX += SI.jetMoveSteps;
                     SI.bulletInitialX += SI.jetMoveSteps;
