@@ -87,6 +87,7 @@
         SI.bulletInitialX = SI.xAxisCenter;
         SI.bulletInitialY = SI.height - (SI.jetSize + SI.bulletRadius);
         SI.bulletList = {};
+        SI.keyMap = {};
 
     };
 
@@ -146,39 +147,39 @@
     })();
 
     SpaceInvader.prototype.handleKeyPress = function (e) {
-
         key = e.code || e.key;
-        switch (key) {
-            case ("ArrowLeft"): {
-                if (SI.jetX > 0) {
-                    SI.jetX -= SI.jetMoveSteps;
-                    SI.bulletInitialX -= SI.jetMoveSteps;
-                }
-                return true;
-            }
+        SI.keyMap[key] = true;
 
-            case ("ArrowUp"):
-            case ("Space"):
-            case (" "): {
-                var bulletKey = 'bullet' + SI.getCount();
-                SI.bulletList[bulletKey] = new SI.FireBullet(SI.bulletInitialX, SI.bulletInitialY, SI.bulletRadius, SI.bulletColor, SI.bulletMoveSteps, bulletKey)
-                return true;
-            }
-
-            case ("ArrowRight"): {
-                if (SI.jetX + SI.jetSize < SI.width) {
-                    SI.jetX += SI.jetMoveSteps;
-                    SI.bulletInitialX += SI.jetMoveSteps;
-                }
-                return true
+        if (SI.keyMap["ArrowLeft"]) {
+            if (SI.jetX > 0) {
+                SI.jetX -= SI.jetMoveSteps;
+                SI.bulletInitialX -= SI.jetMoveSteps;
             }
         }
 
+        if (SI.keyMap["ArrowRight"]) {
+            if (SI.jetX + SI.jetSize < SI.width) {
+                SI.jetX += SI.jetMoveSteps;
+                SI.bulletInitialX += SI.jetMoveSteps;
+            }
+        }
+
+        if (SI.keyMap["ArrowUp"] || SI.keyMap["Space"] || SI.keyMap[" "]) {
+            var bulletKey = 'bullet' + SI.getCount();
+            SI.bulletList[bulletKey] = new SI.FireBullet(SI.bulletInitialX, SI.bulletInitialY, SI.bulletRadius, SI.bulletColor, SI.bulletMoveSteps, bulletKey)
+            return true;
+        }
     };
+
+    SpaceInvader.prototype.handleKeyUp = function (e) {
+        key = e.code || e.key;
+        delete SI.keyMap[key];
+    }
 
 
     SpaceInvader.prototype.listenEvents = function () {
         document.addEventListener('keydown', SI.handleKeyPress);
+        document.addEventListener('keyup', SI.handleKeyUp);
     };
 
 
