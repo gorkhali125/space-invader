@@ -86,8 +86,6 @@
         SI.bulletMoveSteps = 4;
         SI.bulletInitialX = SI.xAxisCenter;
         SI.bulletInitialY = SI.height - (SI.jetSize + SI.bulletRadius);
-
-        SI.eventName = 'updateBullet';
         SI.bulletList = {};
 
     };
@@ -147,7 +145,7 @@
         };
     })();
 
-    SpaceInvader.prototype.handleKeyPress = function (e, eventName) {
+    SpaceInvader.prototype.handleKeyPress = function (e) {
 
         switch (e.keyCode) {
             // left arrow
@@ -182,7 +180,6 @@
 
     SpaceInvader.prototype.listenEvents = function () {
         document.addEventListener('keydown', SI.handleKeyPress);
-        // document.addEventListener('keyup', SI.handleKeyPress);
     };
 
 
