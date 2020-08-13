@@ -4,24 +4,19 @@
     <head>
         <meta charset="utf-8" />
         <title>Space Invaders</title>
-        <style>
-            #spaceInvader {
-                background: #eee;
-                display: block;
-                margin: 0 auto;
-                position: fixed;
-                top: 5%;
-                left: 35%;
-            }
-        </style>
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
-        <!-- Canvas to draw the whole game -->
-        <canvas id="spaceInvader" width="500" height="900"></canvas> 
         
-        <!-- Required JS -->
+        <div id="space-invader"></div>
         <script type="text/javascript" src="spaceinvader.js"></script>
+
+        <script>
+            window.onload = function(){
+                new SpaceInvader('space-invader', 400, 700);
+            };
+        </script>
     </body>
 
 </html>
