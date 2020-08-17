@@ -50,6 +50,10 @@
                 delete SI.bulletList[bulletKey];
             }
         }
+
+        this.getPosition = function () {
+            return y;
+        }
     };
 
 
@@ -84,6 +88,8 @@
         SI.bulletColor = 'red';
         SI.bulletRadius = 5;
         SI.bulletMoveSteps = 4;
+        SI.bulletSeparation = 20;
+        SI.prevBullet = null,
         SI.bulletInitialX = SI.xAxisCenter;
         SI.bulletInitialY = SI.height - (SI.jetSize + SI.bulletRadius);
         SI.bulletList = {};
@@ -166,7 +172,19 @@
 
         if (SI.keyMap["ArrowUp"] || SI.keyMap["Space"] || SI.keyMap[" "]) {
             var bulletKey = 'bullet' + SI.getCount();
-            SI.bulletList[bulletKey] = new SI.FireBullet(SI.bulletInitialX, SI.bulletInitialY, SI.bulletRadius, SI.bulletColor, SI.bulletMoveSteps, bulletKey)
+
+            console.log(SI.bulletList)
+            if (SI.prevBullet !== null) {
+                var prevBullet = SI.bulletList[SI.prevBullet];
+                if ((SI.bulletInitialY - prevBullet.getPosition()) > SI.bulletSeparation) {
+                    SI.prevBullet = bulletKey;
+                    SI.bulletList[bulletKey] = new SI.FireBullet(SI.bulletInitialX, SI.bulletInitialY, SI.bulletRadius, SI.bulletColor, SI.bulletMoveSteps, bulletKey);
+                }
+            }else{
+                SI.prevBullet = bulletKey;
+                SI.bulletList[bulletKey] = new SI.FireBullet(SI.bulletInitialX, SI.bulletInitialY, SI.bulletRadius, SI.bulletColor, SI.bulletMoveSteps, bulletKey);
+            }
+
             return true;
         }
     };
