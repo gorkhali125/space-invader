@@ -153,7 +153,7 @@
     })();
 
     SpaceInvader.prototype.handleKeyPress = function (e) {
-        key = e.code || e.key;
+        var key = e.code || e.key;
         SI.keyMap[key] = true;
 
         if (SI.keyMap["ArrowLeft"]) {
@@ -189,7 +189,7 @@
     };
 
     SpaceInvader.prototype.handleKeyUp = function (e) {
-        key = e.code || e.key;
+        var key = e.code || e.key;
         delete SI.keyMap[key];
     }
 
