@@ -173,7 +173,6 @@
         if (SI.keyMap["ArrowUp"] || SI.keyMap["Space"] || SI.keyMap[" "]) {
             var bulletKey = 'bullet' + SI.getCount();
 
-            console.log(SI.bulletList)
             if (SI.prevBullet !== null) {
                 var prevBullet = SI.bulletList[SI.prevBullet];
                 if ((SI.bulletInitialY - prevBullet.getPosition()) > SI.bulletSeparation) {
