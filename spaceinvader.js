@@ -48,7 +48,7 @@
 
             if (y < 0) {
                 delete SI.bulletList[bulletKey];
-                if(Object.keys(SI.bulletList).length == 0){
+                if (Object.keys(SI.bulletList).length == 0) {
                     SI.prevBullet = null;
                 }
             }
@@ -92,7 +92,7 @@
         SI.bulletRadius = 5;
         SI.bulletMoveSteps = 4;
         SI.bulletSeparation = 20;
-        SI.prevBullet = null,
+        SI.prevBullet = null;
         SI.bulletInitialX = SI.xAxisCenter;
         SI.bulletInitialY = SI.height - (SI.jetSize + SI.bulletRadius);
         SI.bulletList = {};
@@ -182,7 +182,7 @@
                     SI.prevBullet = bulletKey;
                     SI.bulletList[bulletKey] = new SI.FireBullet(SI.bulletInitialX, SI.bulletInitialY, SI.bulletRadius, SI.bulletColor, SI.bulletMoveSteps, bulletKey);
                 }
-            }else{
+            } else {
                 SI.prevBullet = bulletKey;
                 SI.bulletList[bulletKey] = new SI.FireBullet(SI.bulletInitialX, SI.bulletInitialY, SI.bulletRadius, SI.bulletColor, SI.bulletMoveSteps, bulletKey);
             }
