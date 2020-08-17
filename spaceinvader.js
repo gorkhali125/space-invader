@@ -48,6 +48,9 @@
 
             if (y < 0) {
                 delete SI.bulletList[bulletKey];
+                if(Object.keys(SI.bulletList).length == 0){
+                    SI.prevBullet = null;
+                }
             }
         }
 
