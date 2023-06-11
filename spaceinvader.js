@@ -205,5 +205,4 @@
         SI.refreshCanvasBullets();
         requestAnimationFrame(animationLoop);
     }
-
 })();
