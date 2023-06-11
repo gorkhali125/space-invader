@@ -11,7 +11,6 @@
  */
 
 (function () {
-
     window.SI;
 
     window.requestAnimationFrame = (function () {
@@ -26,7 +25,6 @@
 
 
     window.SpaceInvader = function (targetId, width, height) {
-
         SI = this;
         SI.setConfiguration(targetId, width, height);
         SI.createCanvas();
@@ -75,7 +73,6 @@
 
 
     SpaceInvader.prototype.setConfiguration = function (targetId, width, height) {
-
         SI.id = targetId;
         SI.width = width;
         SI.height = height;
@@ -102,7 +99,6 @@
 
 
     SpaceInvader.prototype.createCanvas = function () {
-
         /* Creating Canvas */
         var canvas = document.createElement('canvas');
         canvas.id = SI.id + '-' + Math.random();
@@ -204,7 +200,6 @@
 
 
     function animationLoop() {
-
         SI.clearCanvas();
         SI.addBackground();
         SI.updateJetPosition();
